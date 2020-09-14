@@ -1,4 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
+import { Readability } from "@mozilla/readability";
+import { JSDOM } from 'jsdom';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const url = req.query.url as string;
@@ -7,15 +9,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     console.log(fetch)
     const response = await fetch(url);
     const html = await response.text();
+    const dom = new JSDOM(html, { url });
+    const reader = new Readability(dom.window.document);
+    const article = reader.parse();
 
-    res.statusCode = 200
-
-    const result = {
-        url,
-    };
+    res.statusCode = 200;
 
     if ('includeHtml' in req.query)
-        result['html'] = html;
+        article['html'] = html;
 
-    res.json(result);
+    if ('includeUrl' in req.query)
+        article['url'] = url;
+
+    res.json(article);
 }
