@@ -42,7 +42,7 @@ export default function Home() {
           <input
             className={styles.url}
             placeholder="Enter url to mobilize" value={url} onChange={e => setUrl(e.target.value)} />
-          <b>Request url:</b> {window.location.origin}{mobilizeUrl}
+          <b>Request url:</b> {'location' in globalThis ? globalThis.location.origin : ''}{mobilizeUrl}
         </header>
         <div>
           <b>Response:</b>
