@@ -10,10 +10,13 @@
   "dependencies": {
     "@mozilla/readability": "^0.3.0",
     "@types/jsdom": "^16.2.4",
+    "@types/react-json-tree": "^0.6.11",
     "jsdom": "^16.4.0",
     "next": "9.5.3",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-json-tree": "^0.13.0",
+    "react-json-view": "^1.19.1"
   },
   "devDependencies": {
     "@types/node": "^14.10.1",
