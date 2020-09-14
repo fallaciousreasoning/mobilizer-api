@@ -56,5 +56,8 @@ export default function Home() {
         </div>}
       </section>
     </div>
+    <div>
+      <a target="_blank" href="https://github.com/fallaciousreasoning/mobilizer-api/">Fork me on Github!</a>
+    </div>
   </div>
 }
