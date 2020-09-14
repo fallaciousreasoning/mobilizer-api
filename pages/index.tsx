@@ -6,7 +6,7 @@ import Spinner from '../components/Spinner';
 import Url from './api/mobilize/[url]';
 
 export default function Home() {
-  const [url, setUrl] = useState('https://www.economist.com/asia/2020/09/13/the-taliban-and-the-afghan-government-talk-peace-at-last');
+  const [url, setUrl] = useState('https://github.com/fallaciousreasoning/mobilizer-api/blob/master/README.md');
   const mobilizeUrl = useMemo(() => `/api/mobilize/${encodeURIComponent(url)}`, [url]);
   const [loading, setLoading] = useState(false);
   const [json, setJson] = useState(undefined);
