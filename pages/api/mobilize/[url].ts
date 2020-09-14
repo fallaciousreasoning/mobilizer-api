@@ -3,17 +3,15 @@ import { Readability } from "@mozilla/readability";
 import { JSDOM } from 'jsdom';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    const url = req.query.url as string;
+    res.statusCode = 200;
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
-    console.log(req.query);
-    console.log(fetch)
+    const url = req.query.url as string;
     const response = await fetch(url);
     const html = await response.text();
     const dom = new JSDOM(html, { url });
     const reader = new Readability(dom.window.document);
     const article = reader.parse();
-
-    res.statusCode = 200;
 
     if ('includeHtml' in req.query)
         article['html'] = html;
