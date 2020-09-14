@@ -5,7 +5,13 @@ export default function Home() {
     <Head>
       Mobilizer Demo
     </Head>
-    
-    Hello World
+
+    <div>
+      <section>
+        <header>
+          <input placeholder="Enter url to mobilize"></input>
+        </header>
+      </section>
+    </div>
   </div>
 }
