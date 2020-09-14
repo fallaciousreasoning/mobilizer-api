@@ -1,3 +1,8 @@
 .url {
     width: 100%;
 }
+
+.html {
+    padding: 8px;
+    border: 1px solid black;
+}

@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import styles from '../styles/Index.module.css'
 import JSONTree from 'react-json-tree';
 import Spinner from '../components/Spinner';
+import Url from './api/mobilize/[url]';
 
 export default function Home() {
   const [url, setUrl] = useState('https://www.economist.com/asia/2020/09/13/the-taliban-and-the-afghan-government-talk-peace-at-last');
@@ -21,7 +22,7 @@ export default function Home() {
         const json = await response.json();
         setJson(json);
       })
-      .catch(e => {})
+      .catch(e => { })
       .finally(() => setLoading(false));
 
     return () => {
@@ -37,14 +38,22 @@ export default function Home() {
     <div>
       <section>
         <header>
-          Url to mobilize:
+          <b>Url to mobilize:</b>
           <input
             className={styles.url}
-            placeholder="Enter url to mobilize" value={url} onChange={e => setUrl(e.target.value)}/>
+            placeholder="Enter url to mobilize" value={url} onChange={e => setUrl(e.target.value)} />
+          <b>Request url:</b> {window.location.origin}{mobilizeUrl}
         </header>
-        {loading || !json 
-          ? <Spinner/>
-          : <JSONTree data={json}/>}
+        <div>
+          <b>Response:</b>
+          {loading || !json
+            ? <div>Loading....</div>
+            : <JSONTree data={json} hideRoot />}
+        </div>
+        {json && json.content && <div>
+          <b>HTML Output:</b>
+          <div className={styles.html} dangerouslySetInnerHTML={{ __html: json.content }} />
+        </div>}
       </section>
     </div>
   </div>
